@@ -1,48 +1,92 @@
-const pug = require('pug')
 const service = require('./service')
+const template = require('./templates/template')
+const querystring = require("querystring");
+const url = require("url");
+
+async function processCallback(func, req) {
+    return func(req)
+}
 
 /**
  * Show list of names
  * @returns {*}
  */
-function index() {
-    const template = pug.compileFile("./src/templates/index.pug")
+async function index() {
+    let view = template.render('index')
 
-    return template()
+    return service.list().then((data) => {
+        return view({
+            contacts: data.data
+        })
+    })
 }
 
 /**
  * Add new contact
- * @param method:string
  * @returns {string|*}
+ * @param req
  */
-function add(method) {
-    if (method === "POST") {
-        return "contact saved!"
+async function add(req) {
+    if (req.method === "POST") {
+        return parsePostBody(req).then(async (data) => {
+            let resp = await service.create(data)
+            if (resp.error) {
+                let view = template.render('error')
+                return view({
+                    msg: resp.error
+                })
+            }
+            let view = template.render('success')
+            return view({
+                msg: "contact created successfully"
+            })
+        })
     }
-    const template = pug.compileFile("./src/templates/add.pug")
+    let view = template.render('add')
 
-    return template()
+    return view()
 }
 
 /**
  * View details of contact
- * @param id:int
  * @returns {*}
+ * @param req
  */
-function view(id) {
-    const template = pug.compileFile("./src/templates/view.pug")
+async function details(req) {
+    let q = url.parse(req.url, true).query;
 
-    let contactDetails = service.getByID(id)
+    let view = template.render('view')
 
-    return template({
-        name: contactDetails.name,
-        numbers: contactDetails.numbers
+    return service.getByID(q.id).then((contactDetails) => {
+        return view({
+            name: contactDetails.data.contact.contact_name,
+            numbers: contactDetails.data.numbers
+        })
+    })
+}
+
+/**
+ * Get post values from request
+ * @param req
+ * @returns {Promise<unknown>}
+ */
+parsePostBody = async (req) => {
+    return new Promise((resolve, reject) => {
+        let queryData = '';
+        req.on('data', function(data) {
+            queryData += data;
+        });
+
+        req.on('end', function() {
+            let postBody = querystring.parse(queryData);
+            resolve(postBody)
+        });
     })
 }
 
 module.exports = {
+    processCallback,
     index,
     add,
-    view
+    details
 }

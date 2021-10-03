@@ -15,11 +15,11 @@ block content
             tr
                 th #
                 th Name
-                th
 
         tbody
-            tr
-                td 1
-                td Mike
-                td
-                    a(href='/view?id=1') view
+
+            each val, index in contacts
+                tr
+                    td #{index + 1}
+                    td
+                        a(href='/view?id=' + val.id) #{val.contact_name}

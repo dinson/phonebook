@@ -1,48 +1,34 @@
 const http = require('http');
 const url = require('url');
+
 const handler = require('./src/handler')
 
-http.createServer(function (req, res) {
+const server = http.createServer(async function (req, res) {
     const q = url.parse(req.url, true);
 
-    let response = processRequest(req.method, q.pathname, q.query)
+    switch (q.pathname) {
+        case "/":
+            return await route(req.method, q.pathname, handler.index, req, res)
+        case "/add":
+            return await route(req.method, q.pathname, handler.add, req, res)
+        case "/view":
+            return await route(req.method, q.pathname, handler.details, req, res)
+        default:
+            res.writeHead(404, {'Content-Type': 'text/html'})
+            res.write("NOT FOUND")
 
-    res.writeHead(response.statusCode, {'Content-Type': 'text/html'})
-    res.write(response.data)
+            return res.end()
+    }
+})
+
+async function route(method, path, handlerCallback, req, res) {
+    let response = await handler.processCallback(handlerCallback, req)
+
+    res.writeHead(200, {'Content-Type': 'text/html'})
+    res.write(response)
 
     return res.end()
-
-}).listen(8080)
-
-/**
- * Process incoming request
- * @param method:string
- * @param path:string
- * @param query:object
- * @returns {{data: *, statusCode: number}}
- */
-function processRequest(method, path, query) {
-    let statusCode = 200
-    let data = ''
-
-    switch (path) {
-        case "/":   // default route
-            data = handler.index()
-            break;
-        case "/add":
-            data = handler.add(method)
-            break;
-        case "/view":
-            data = handler.view(query.id)
-            break;
-        default:
-            statusCode = 404
-            data = "Invalid route"
-            break;
-    }
-
-    return {
-        "statusCode": statusCode,
-        "data": data
-    }
 }
+
+
+server.listen(8080)
