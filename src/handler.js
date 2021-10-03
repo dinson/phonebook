@@ -1,5 +1,5 @@
-const service = require('./service')
-const template = require('./templates/template')
+const service = require('./service');
+const template = require('./templates/template');
 const querystring = require("querystring");
 const url = require("url");
 

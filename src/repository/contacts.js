@@ -64,8 +64,6 @@ async function get(id) {
     })
 }
 
-
-
 module.exports = {
     create,
     list,

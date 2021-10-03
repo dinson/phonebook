@@ -10,7 +10,6 @@ getByID = (id) => {
     const promise2 = numbersRepo.list(id)
 
     return Promise.all([promise1, promise2]).then((values) => {
-        console.log(values)
         return {
             data: {
                 contact: values[0].data[0],
