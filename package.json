@@ -1,0 +1,26 @@
+{
+  "name": "phonebook",
+  "version": "1.0.0",
+  "description": "A simple phone book application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dinson/phonebook.git"
+  },
+  "keywords": [
+    "phonebook"
+  ],
+  "author": "Dinson David Kurian <dinson@slashbeyond.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dinson/phonebook/issues"
+  },
+  "homepage": "https://github.com/dinson/phonebook#readme",
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "pug": "^3.0.2"
+  }
+}
