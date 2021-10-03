@@ -43,6 +43,10 @@ async function create(data) {
     })
 }
 
+/**
+ * List contacts
+ * @returns {Promise<{data: *, error: *}>}
+ */
 async function list() {
     return contactsRepo.list().then((res) => {
         return {
