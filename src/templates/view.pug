@@ -1,0 +1,9 @@
+//- view.pug
+extends layout.pug
+
+block content
+    h1 Name: #{name}
+
+    ul
+        each val in numbers
+         li #{val}

@@ -1,0 +1,25 @@
+//- index.pug
+extends layout.pug
+
+block content
+    h1= "Phonebook"
+    hr
+    a(href='/add')  Add new number
+
+    div
+    h3 Contacts
+    hr
+
+    table
+        thead
+            tr
+                th #
+                th Name
+                th
+
+        tbody
+            tr
+                td 1
+                td Mike
+                td
+                    a(href='/view?id=1') view

@@ -1,0 +1,29 @@
+//- add.pug
+extends layout.pug
+
+block content
+
+    h1= "New Contact"
+    p= "Add new contact to phonebook."
+
+
+    form(
+        action='/add'
+        method='post'
+    )
+        div
+            label Name
+            input(
+                name='contactName'
+                type='text'
+            )
+        div
+            label Phone number
+            input(
+                name='contactNumber[]'
+                type='text'
+            )
+        div
+            button(
+                type='submit'
+            ) save
