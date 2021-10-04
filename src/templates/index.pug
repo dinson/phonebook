@@ -2,15 +2,10 @@
 extends layout.pug
 
 block content
-    h1= "Phonebook"
-    hr
-    a(href='/add')  Add new number
-
-    div
     h3 Contacts
     hr
 
-    table
+    table(class='table table-striped')
         thead
             tr
                 th #

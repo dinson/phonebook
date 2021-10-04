@@ -1,9 +1,23 @@
 //- layout.pug
+
 html
   head
     title Phonebook
+    link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css')
   body
-    a(href='/')  Home
-    hr
+    nav(class='navbar navbar-expand-lg navbar-light bg-light')
+        div(class='container')
+            a(class='navbar-brand' href='/') Phonebook
 
-    block content
+            ul(class='navbar-nav')
+                li(class='nav-item')
+                    a(href='/' class='nav-link')  Home
+                li(class='nav-item')
+                    a(href='/add' class='nav-link')  Add Contact
+
+        hr
+
+    div(class='container')
+        div(class='row mt-4')
+            div(class='col-6')
+                block content

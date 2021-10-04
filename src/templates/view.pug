@@ -2,8 +2,11 @@
 extends layout.pug
 
 block content
-    h1 Name: #{name}
+    h6 Contact details
+    h1 #{name}
 
-    ul
-        each val in numbers
-            li #{val.contact_number}
+    table(class='table table-striped')
+        tbody
+            each val in numbers
+                tr
+                    th #{val.contact_number}
