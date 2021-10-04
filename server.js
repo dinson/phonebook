@@ -1,3 +1,4 @@
+require('dotenv').config()
 const http = require('http');
 const url = require('url');
 const handler = require('./src/handler')
@@ -71,4 +72,4 @@ async function serveAssetOrError(assetName, res) {
 }
 
 // start server
-server.listen(8080)
+server.listen(process.env.PORT)
