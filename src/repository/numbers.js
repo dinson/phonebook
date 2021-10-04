@@ -32,10 +32,15 @@ async function create(contact_id, numbers) {
         let sql = 'INSERT INTO numbers (contact_id, contact_number) VALUES ?';
 
         let numList = []
-        numbers.forEach((num) => {
-            let t = [contact_id, num]
+        if (Array.isArray(numbers)) {
+            numbers.forEach((num) => {
+                let t = [contact_id, num]
+                numList.push(t)
+            })
+        } else {
+            let t = [contact_id, numbers]
             numList.push(t)
-        })
+        }
 
         let query = mysql.format(sql,[numList]);
 

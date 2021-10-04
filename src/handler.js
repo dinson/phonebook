@@ -33,12 +33,13 @@ async function add(req) {
             if (resp.error) {
                 let view = template.render('error')
                 return view({
-                    msg: resp.error
+                    msg: resp.error + '. ' + resp.data
                 })
             }
             let view = template.render('success')
             return view({
-                msg: "contact created successfully"
+                msg: "contact created successfully",
+                contactID: resp.contactID
             })
         })
     }

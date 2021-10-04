@@ -3,10 +3,15 @@ extends layout.pug
 
 block content
     h6 Contact details
-    h1 #{name}
+    h1(class='mt-4 mb-4') #{name}
 
     table(class='table table-striped')
+        thead
+            tr
+                th #
+                th Number
         tbody
-            each val in numbers
+            each val, index in numbers
                 tr
+                    th #{index + 1}
                     th #{val.contact_number}

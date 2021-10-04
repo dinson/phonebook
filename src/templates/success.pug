@@ -2,8 +2,14 @@
 extends layout.pug
 
 block content
-    h1 Yayy!
+    div(class='text-center mt-4')
+        h1 Yayy!
 
-    hr
+        hr
 
-    p #{msg}
+        p #{msg}
+
+        a(
+            href='/view?id=' + contactID
+            class='btn btn-primary mt-4'
+        ) view

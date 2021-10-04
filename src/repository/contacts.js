@@ -18,8 +18,11 @@ async function create(name, numbers) {
             return numbersRepo.create(result.insertId, numbers).then((res) => {
                 resolve({
                     data: res,
+                    contactID: result.insertId,
                     error: false
                 })
+            }).catch((err) => {
+                reject(err)
             })
         });
     })

@@ -31,6 +31,7 @@ async function create(data) {
     return contactsRepo.create(name, numbers).then((res) => {
         return {
             "data": "contact created",
+            "contactID": res.contactID,
             "error": false
         }
 
