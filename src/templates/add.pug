@@ -29,15 +29,16 @@ block content
                 class='form-control'
                 required
             )
-        div(class='form-group mt-2')
-            label Phone number
-            input(
-                name='contactNumber'
-                type='text'
-                class='form-control'
-            )
-        div(class='form-group mt-3')
+            button(
+                class='btn btn-outline-primary btn-sm mt-4'
+                type='button'
+                id='btn-add-number'
+            ) + add number
+        div(class='form-group mt-4 d-grid gap-2 col-6 mx-auto')
             button(
                 type='submit'
-                class='btn btn-success'
+                class='btn btn-success btn-block'
             ) save
+
+
+    script(src='/js/add-contact.js')
