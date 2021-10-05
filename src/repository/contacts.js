@@ -1,6 +1,8 @@
 const mysql = require('mysql')
-const con = require('./repository')
+const repo = require('./repository')
 const numbersRepo = require("./numbers");
+
+const db = repo.init()
 
 /**
  * Add new record to DB
@@ -12,7 +14,7 @@ async function create(name, numbers) {
         let sql = 'INSERT INTO contacts (contact_name) VALUES (?)';
         let query = mysql.format(sql,[name]);
 
-        con.con.query(query, function (err, result) {
+        db.query(query, function (err, result) {
             if (err) reject(err);
 
             return numbersRepo.create(result.insertId, numbers).then((res) => {
@@ -36,7 +38,7 @@ async function list() {
     return new Promise((resolve, reject) => {
         let query = 'SELECT * FROM contacts';
 
-        con.con.query(query, function(err, result) {
+        db.query(query, function(err, result) {
             if (err) reject(err)
 
             resolve({
@@ -56,7 +58,7 @@ async function get(id) {
     return new Promise((resolve, reject) => {
         let sql = 'SELECT * FROM contacts WHERE id=?';
         let query = mysql.format(sql, [id])
-        con.con.query(query, function(err, result) {
+        db.query(query, function(err, result) {
             if (err) reject(err)
 
             resolve({
