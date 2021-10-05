@@ -1,5 +1,15 @@
-# phonebook
-A simple phone book application. 
+# Phonebook
+A simple phone book application built using NodeJS without any framework, Pug template engine for boiler plate, MySQL for database and Docker.
+<br>
+<table>
+    <tr>
+        <th>Node JS (no framework)</th>
+        <th>Pug</th>
+        <th>MySQL</th>
+        <th>Docker</th>
+    </tr>
+</table>
+<hr>
 
 Goals: 
 - Add a name and associate it with either one number or more than one. 
