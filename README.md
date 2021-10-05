@@ -8,5 +8,5 @@ Goals:
 
 ## Steps to run
 - Copy `.env_sample` to `.env` and change configuration values.
-- Run `node server.js` from root directory to start the server.
-- Visit `localhost:8080` from browser, or replace the port number as per `.env` configuration.
+- Run `docker-compose up` from root directory to start the server.
+- Visit `localhost:8080` from browser to launch the application.
