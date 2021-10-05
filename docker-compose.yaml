@@ -27,6 +27,5 @@ services:
       - MYSQL_DATABASE=db_phonebook
       - MYSQL_USER=root
       - MYSQL_PASSWORD=secretpassword
-      - MYSQL_ROOT_PASSWORD=secretpassword
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
