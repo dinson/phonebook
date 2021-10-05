@@ -1,5 +1,7 @@
-const con = require('./repository')
+const repo = require('./repository')
 const mysql = require("mysql");
+
+const db = repo.init()
 
 /**
  * get list of numbers associated with a contact_id
@@ -11,7 +13,7 @@ async function list(id) {
         let sql = 'SELECT * FROM numbers WHERE contact_id=?';
         let query = mysql.format(sql, [id])
 
-        con.con.query(query, function(err, result) {
+        db.query(query, function(err, result) {
             if (err) reject(err)
 
             resolve({
@@ -44,7 +46,7 @@ async function create(contact_id, numbers) {
 
         let query = mysql.format(sql,[numList]);
 
-        con.con.query(query, function (err, result) {
+        db.query(query, function (err, result) {
             if (err) reject(err);
 
             resolve({
